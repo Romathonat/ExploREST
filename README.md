@@ -1,3 +1,5 @@
+# ExploREST
+
 An app to browse, documentate, discover REST APIs 
 
 ExploREST is a generic app which let you explore REST API. 
