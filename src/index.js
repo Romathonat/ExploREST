@@ -27,7 +27,6 @@ const readings = [
   ]
 ;
 
-window.proxyURL = conf.proxyURL; //redirection to make ajax calls
 window.backendURL = conf.backendURL;
 window.rootURL = window.location.host;
 

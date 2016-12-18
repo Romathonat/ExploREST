@@ -34,7 +34,7 @@ class NavBar extends React.Component{
     else{
       //we make this request to specify to the server our current targetServer
       $.ajax({
-        url: '/conf?proxyTarget='+backendURL,
+        url: '/',
         type: 'GET',
         success: function(data){
           //we now make a test request to make sure the target is accessible

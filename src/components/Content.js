@@ -10,7 +10,6 @@ import Reading from './Reading.js';
 import GetButton from './buttons/GetButton.js';
 import EditButton from './buttons/EditButton.js';
 import DelButton from './buttons/DelButton.js';
-import ModelButton from './buttons/ModelButton.js';
 
 import {callAPI} from '../utils.js';
 import * as actions from '../actions/actionIndex.js';
@@ -107,7 +106,6 @@ class Content extends React.Component{
             <GetButton setErrorMessage={this.setErrorMessage} />
             <EditButton setErrorMessage={this.setErrorMessage} />
             <DelButton setErrorMessage={this.setErrorMessage} />
-            <ModelButton setErrorMessage={this.setErrorMessage} />
           </div>
 
           {okMessage}

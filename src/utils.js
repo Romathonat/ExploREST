@@ -6,10 +6,9 @@ import ValueJSON from './components/reactifyJSON/ValueJSON.js';
 
 
 export function callAPI(operation, relativeUrl, currentSuccess, currentError, additionalHeaders, data, asynchronous, timeout){
-  var url = 'http://pokeapi.co/api/v2'+relativeUrl;
+  var url = window.backendURL+relativeUrl;
 
   var headers = {
-    // 'If-None-Match': -1,
     'Accept' : 'application/json'
   };
   headers = $.extend(headers, additionalHeaders);
