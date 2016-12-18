@@ -90,7 +90,7 @@ class Content extends React.Component{
           <h2 className="ui header">
             <i className="configure icon"></i>
             <div className="content">
-              OCCI playground
+              Playground
             </div>
           </h2>
         </div>

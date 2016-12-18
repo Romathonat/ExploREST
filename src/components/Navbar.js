@@ -16,23 +16,7 @@ class NavBar extends React.Component{
       allowAdditions: true
     });
 
-    if(!window.integratedVersion){
-      this.updateBackendURL();
-    }
-  }
-
-  /*look for schemes and their corresponding kinds, and dispatch to the store the correct datas*/
-  getSchemes = (data) => {
-    var schemes = {};
-    for(var i=0; i<data.kinds.length; i++){
-      if(data.kinds[i].scheme in schemes){
-        schemes[data.kinds[i].scheme].push({title: data.kinds[i].title, term: data.kinds[i].term});
-      }
-      else{
-        schemes[data.kinds[i].scheme] = [{title: data.kinds[i].title, term: data.kinds[i].term}];
-      }
-    }
-    this.props.dispatch(actions.setCurrentSchemes(schemes));
+    this.updateBackendURL();
   }
 
   updateBackendURL = () => {
@@ -48,7 +32,7 @@ class NavBar extends React.Component{
       navbar.props.dispatch(actions.setErrorMessage('The URL needs to begin with http:// or https://  '));
     }
     else{
-      var getSchemes = this.getSchemes;
+      //we make this request to specify to the server our current targetServer
       $.ajax({
         url: '/conf?proxyTarget='+backendURL,
         type: 'GET',
@@ -56,15 +40,12 @@ class NavBar extends React.Component{
           //we now make a test request to make sure the target is accessible
           callAPI(
             'GET',
-            '/-/',
+            '/',
             (data) => {
               window.backendURL = backendURL;
               navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
-              navbar.props.dispatch(actions.setCurrentQueryPath('/-/'));
+              navbar.props.dispatch(actions.setCurrentQueryPath('/'));
               navbar.props.dispatch(actions.setCurrentJson(data));
-
-              //we use that datas to extract the schemes and their kinds
-              getSchemes(data);
             },
             (xhr) => {
               navbar.props.dispatch(actions.setErrorMessage('Error connecting to '+backendURL));
@@ -75,35 +56,7 @@ class NavBar extends React.Component{
     }
   }
 
-  displayKind = (kind) => {
-    var link = '/categories/'+kind;
-    this.props.dispatch(actions.setCurrentQueryPath(link));
-    this.props.dispatch(actions.setReadableCode());
-
-    callAPI(
-      'GET',
-      link,
-      (data) => {
-        this.props.dispatch(actions.setCurrentJson(data));
-      }
-    )
-  }
-
   render() {
-    //we retrieve the kinds of each one of the scheme
-    var schemes = [];
-    for(var scheme in this.props.schemes){
-      schemes.push(<div className="item" key={scheme}>
-        <i className="dropdown icon"></i>
-        <span className="text">{scheme}</span>
-          <div className="menu">
-            {this.props.schemes[scheme].map((kind, i) => {
-              return <div className="item" onClick={() => this.displayKind(kind.term)} key={kind.term}>{kind.title}</div>
-            })}
-          </div>
-        </div>);
-    }
-
     //we set the options of the backendURL
     var options = conf.serverPaths.map((path,i) => {
       return (
@@ -111,41 +64,29 @@ class NavBar extends React.Component{
       );
     })
 
-    if(window.integratedVersion === false){
-      var serverSelection = <div className="ui item">
-              <select className="ui fluid search dropdown backendURL" name="backendURL"onChange={() => {}}>
-                {options}
-              </select>
-            <button className="ui button useButton" onClick={this.updateBackendURL}>Use</button>
-          </div>;
-    }
-    else{
-      var serverSelection = null;
-    }
+    var serverSelection =
+      <div className="ui item">
+          <select className="ui fluid search dropdown backendURL" name="backendURL"onChange={() => {}}>
+            {options}
+          </select>
+        <button className="ui button useButton" onClick={this.updateBackendURL}>Use</button>
+      </div>;
 
     return (
       <div className="ui inverted menu navbar centered grid blue">
         <div className="ui container wrapNavbar">
-          <a className="brand item largefont">OCCInterface</a>
-          <a className="ui dropdown item">
-            Select Kind
-            <i className="dropdown icon"></i>
-            <div className="menu">
-              {schemes}
-            </div>
-          </a>
+          <a className="brand item largefont">ExploREST</a>
           <div className="ui item right navBarRight">
             {serverSelection}
           </div>
           <div className="ui item">
-            <a href="https://github.com/Romathonat/OCCInterface" ><i className="big github icon"></i></a>
+            <a href="https://github.com/Romathonat/ExploREST"><i className="big github icon"></i></a>
           </div>
         </div>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = (state) => ({
   currentURLServer: state.currentURLServer,

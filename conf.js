@@ -1,18 +1,16 @@
 //the list of servers we can access
 const serverPaths = [
-  'http://malmo.lizenn.net:8080',
-  'http://localhost:8080',
-  'http://malmo.lizenn.net:8082',
+  'http://pokeapi.co/api/v2'
 ]
 
 //the adress used internally in the application to proxy
-const proxyURL = '/proxiedOCCIServer';
+const proxyURL = '/proxy';
 
 //the adress of the initial backend Server
 const backendURL = serverPaths[0];
 
 const initialState =  {
-  currentPath: '/-/',
+  currentPath: '/',
   currentJson: {},
   errorMessage: {
     simple: '',
@@ -21,11 +19,7 @@ const initialState =  {
   okMessage: '',
   currentURLServer: backendURL,
   // readings (toolified), or write (edit)
-  codeRights: 'read',
-  schemes: {schemeName: [{title: '', term: ''}]}
+  codeRights: 'read'
 };
 
-//this const will be changed when deploying on standalone. Must be false by default
-const integratedVersion = false;
-
-module.exports = {initialState: initialState, proxyURL: proxyURL, backendURL: backendURL, serverPaths: serverPaths, integratedVersion: integratedVersion};
+module.exports = {initialState: initialState, proxyURL: proxyURL, backendURL: backendURL, serverPaths: serverPaths};

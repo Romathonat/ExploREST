@@ -6,12 +6,7 @@ import ValueJSON from './components/reactifyJSON/ValueJSON.js';
 
 
 export function callAPI(operation, relativeUrl, currentSuccess, currentError, additionalHeaders, data, asynchronous, timeout){
-  if(window.integratedVersion){
-    var url = 'http://localhost:8080'+relativeUrl;
-  }
-  else{
-    var url = window.proxyURL+relativeUrl;
-  }
+  var url = 'http://pokeapi.co/api/v2'+relativeUrl;
 
   var headers = {
     // 'If-None-Match': -1,
