@@ -97,7 +97,7 @@ class Reading extends React.Component{
     }
   }
 
-  deleteResources = (datas) => {
+  deleteResources = (data) => {
     if(data instanceof Array){
       for(var datum of data){
         callAPI(
