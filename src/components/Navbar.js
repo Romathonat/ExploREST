@@ -34,25 +34,19 @@ class NavBar extends React.Component{
     else{
       //we make this request to specify to the server our current targetServer
       $.ajax({
-        url: '/',
+        url: backendURL+'/',
         type: 'GET',
         success: function(data){
-          //we now make a test request to make sure the target is accessible
-          callAPI(
-            'GET',
-            '/',
-            (data) => {
               window.backendURL = backendURL;
               navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
               navbar.props.dispatch(actions.setCurrentQueryPath('/'));
               navbar.props.dispatch(actions.setCurrentJson(data));
             },
-            (xhr) => {
+        error: function(xhr){
               navbar.props.dispatch(actions.setErrorMessage('Error connecting to '+backendURL));
             }
-          );
         }
-      });
+      );
     }
   }
 
