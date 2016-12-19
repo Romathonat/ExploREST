@@ -128,7 +128,7 @@ class Reading extends React.Component{
 
   clickLinkSample = (uuid) => {
     this.props.goToTop();
-    
+
     //we search into the current window.sampleDatas the correct json
     var content = '' ;
     for(var i=0; i<window.sampleDatas.length; i++){
@@ -171,6 +171,7 @@ class Reading extends React.Component{
   createMarkup = () => {
     marked.setOptions({
       renderer: getRenderer(),
+      gfm: false,
       highlight: function(code){
         return window.hljs.highlightAuto(code).value;
       }

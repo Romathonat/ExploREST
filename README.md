@@ -2,10 +2,9 @@
 
 An app to browse, documentate, discover REST APIs
 
-ExploREST is a generic app which let you explore REST API.
-There is two main use cases :
-* You can use it as a tool to browse resources of any API you want (using HTTP methods).
-* You can use it as your own documentation tool for your API REST.
+ExploREST is an application that you can use to documentate your REST API, to make presentations
+or show easily how beautiful your API is.  
+If you look at a classic API documentation, it is often quite complicated. With ExploREST, you take the user by the hand and show him how your application works by simply cliking on links, that will POST, PUT, DELETE or simply GET !
 
 Features:
 * Cross-resource exploration: when a resource has a link to another resource, you can directly click it to access it.
@@ -13,6 +12,8 @@ Features:
 * Markdown to documentate your API
 * Playground links: insert them in you Markdown. When you click on them, if makes a get request and diplays the result !
 * Sample links: idem. When you click on them, it makes the POST or DELETE requests you specified in the Markdown. It is very practical for demonstrations, or to communicate with someone else: instead of making a curl (more efforts needed), put a sample link into the markdown for once. Now other people just have to click it !
+
+Note that I did this project on my own, so it is not fully tested and documented yet. But there is a good base.
 
 Requirement :
 (some versions bellow should work too but have not been tested)
@@ -75,7 +76,7 @@ text before %{
 }% text after
 ```
 
-It will result into a clickable link, which will post or put datas on click:
+It will result in a clickable link, which will post or put datas on click:
 
 ``` HTML
 <p>text before <a>sampleLink</a> text after</p>
@@ -132,7 +133,10 @@ Yes, you can, with the following format :
   "text": "my sample link",
   "del": "/6df690d2-3158-40c4-88fb-d1c41584d6e7"
 }%
-``
+```
+
+- I want to use this tool to documentate my own REST API, I need to add headers for the authentification, hox to do it ?
+Go to the conf.js file, and add the headers you want in the headers variable.
 
 - How to deploy on Heroku ?  
 

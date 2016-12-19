@@ -1,7 +1,8 @@
 //the list of servers we can access
 const serverPaths = [
   'https://api.github.com',
-  'https://www.foaas.com',
+  'http://reqres.in/api',
+  'http://hipsterjesus.com/api',
   'http://pokeapi.co/api/v2'
 ]
 
@@ -9,8 +10,6 @@ const serverPaths = [
 headers = {
     //'Authorization': 'token mytoken'
 }
-
-
 
 //the adress of the initial backend Server
 const backendURL = serverPaths[0];

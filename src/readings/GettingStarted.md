@@ -1,74 +1,58 @@
 
-## What is the OCCI playground ?
+## What is ExploREST ?
 
-The OCCI playground is a tool to help you discover, learn and test the OCCI API and manage OCCI resources.  
+ExploREST is an application that you can use to documentate your REST API, to make presentations
+or show easily how beautiful your API is.  
+If you look at a classic API documentation, it is often quite complicated. With ExploREST, you take the user by the hand and show him how your application works by simply cliking on links, that will POST, PUT, DELETE or simply GET !
 
-## And what is OCCI ?
+## Try it out
 
-OCCI is a set of specifications which standardize and unify the management of the Cloud. In this standard, everything is a *Resource* or
-a *Link*. More informations [here](http://occi-wg.org/about/specification/)
+To show you how simple it is, let's use ExploREST to discover a REST API you may not know : [http://reqres.in/api](http://reqres.in/api)  
+You can get the list of users by clicking [here](/users).  
 
-## Getting started
-
-You can explore the API by clicking on the [links](/categories/compute), in the JSON or in this text, or by entering a target URL and clicking on the GET button.
-
-You can post a sample of data by clicking %{
-  "text": "here",
-  "post": [
-    {
-        "adress": "/categories/compute",
+With reqres, you can create users. Let's say we want to create an user called Linus Torvald : %{
+    "text": "try it",
+    "post":{
+        "adress": "/users",
         "data": {
-          "attributes": {
-            "occi.compute.hostname" : "test",
-            "occi.compute.state" : "inactive"
-          },
-          "id": "6df690d2-3158-40c4-88fb-d1c41584d6e5"
+            "id": 51,
+            "name": "Linux Torvald",
+            "job": "Linux God"
         }
-    },
-    {
-        "adress": "/categories/storage",
-        "data": {
-          "attributes": {
-            "occi.storage.size" : 1000
-          },
-          "id": "6df690d2-3158-40c4-88fb-d1c41584d6e6"
-        }
-    },
-    {
-      "adress": "/categories/storagelink",
-      "data": {
-         "kind":"www.schemas.ogf.org/occi/infrastructure#storagelink",
-         "attributes": {
-           "occi.core.id":"6df690d2-3158-40c4-88fb-d1c41584d6e7",
-           "occi.storagelink.deviceid":"/dev/vdc"
-         },
-         "target": {
-           "location": "6df690d2-3158-40c4-88fb-d1c41584d6e6"
-         },
-         "source": {
-           "location": "6df690d2-3158-40c4-88fb-d1c41584d6e5"
-         }
-      }
     }
-  ]
-}%(you need to have occi-infra on your server)
+}%  
 
-* The first URL you should know is [/-/](/-/).
-It gives you the configuration of the OCCI server, list the **actions** you can do, and the **kinds** of resources you can interact with.
-You can also discover the **kinds** of the current OCCI server by clicking on "Select Kind" at the top of the page.      
+Now let's create a friend of Linus, which is friend with the first user of our database : %{
+    "text": "Richard Stallman",
+    "post":{
+        "adress": "/users",
+        "data": {
+            "name": "Richard Stallman",
+            "job": "Computer God",
+            "friend": "http://reqres.in/api/users/1"
+        }
+    }
+}%  
 
-* To access a categorie, use URLs of this type : [/categories/storagelink](/categories/storagelink)  
+You can click on links to navigate betweens resources in the json, clik on the value of the field "friend"
+of Stallman for example.  
 
-* Each resource has an unique id. To access a resource, click on a link pointing to it, or use an URL of this type :
-[/6df690d2-3158-40c4-88fb-d1c41584d6e5](/6df690d2-3158-40c4-88fb-d1c41584d6e5)<br><br>
+Now we are going to delete Linux Torvald
+%{
+  "text": "by clicking here",
+  "del": "/users/51"
+}%
 
-Morevover, the use of the four buttons are quite simple :
+See ? That was **easy**
+
+You can explore the API by clicking on the links, in the JSON or in this text, or by entering a target URL and clicking on the GET button.
+
+Morevover, the use of the three buttons are quite simple :
 
 * GET: make a GET request with the target URL
-* EDIT: switch the JSON view to editable, then you can make a POST or PUT to edit or create datas
+* EDIT: switch the JSON view to editable, then you can make a POST or PUT to edit or create data
 * DEL: make a DELETE request with the target URL
-* M: Go to the kind (the Model) of a resource. You need to have a target URL pointing to a resource.  
 
 ### Switching server
 
-You can switch the current OCCI server you are working on with the editable dropdown at the top of the page.
+You can switch the current server you are working on with the editable dropdown at the top of the page.

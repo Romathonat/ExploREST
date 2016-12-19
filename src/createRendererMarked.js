@@ -23,6 +23,7 @@ function replaceLinkSample(content){
     parsedText = cache.element;
     cache = replaceLinkSampleParagraph(parsedText.html());
   }
+  
   return parsedText;
 }
 

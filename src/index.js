@@ -8,10 +8,9 @@ import reducer from './reducers/index.js';
 import App from './App';
 
 import GettingStarted from 'raw!./readings/GettingStarted.md';
-import OCCIProject from 'raw!./readings/OCCIProject.md';
+import OtherInfos from 'raw!./readings/OtherInfos.md';
 
 import conf from '../conf.js';
-
 
 let store = createStore(reducer, conf.initialState);
 // let store = createStore(reducer, initialState, window.devToolsExtension && window.devToolsExtension());
@@ -19,15 +18,12 @@ let store = createStore(reducer, conf.initialState);
 //the first reading is the default
 const readings = [
     {'title':'Getting started', 'path': 'gettingStarted', 'component': GettingStarted},
-    {'title':'The OCCIware Project', 'path': 'OCCIProject', 'component': OCCIProject},
-    {'title':'Known issues', 'path': 'knownIssues', 'component': knownissues},
-    {'title':'Samples', 'path': 'postingSamples', 'component': postdatas}
+    {'title':'Other Infos', 'path': 'OtherInfos', 'component': OtherInfos}
   ]
 ;
 
 window.backendURL = conf.backendURL;
 window.rootURL = window.location.host;
-
 
 ReactDOM.render(
   <Provider store={store}>
