@@ -9,8 +9,6 @@ import App from './App';
 
 import GettingStarted from 'raw!./readings/GettingStarted.md';
 import OCCIProject from 'raw!./readings/OCCIProject.md';
-import knownissues from 'raw!./readings/KnownIssues.md';
-import postdatas from 'raw!./readings/PostDatas.md';
 
 import conf from '../conf.js';
 

@@ -17,7 +17,7 @@ You can post a sample of data by clicking %{
   "post": [
     {
         "adress": "/categories/compute",
-        "datas": {
+        "data": {
           "attributes": {
             "occi.compute.hostname" : "test",
             "occi.compute.state" : "inactive"
@@ -27,7 +27,7 @@ You can post a sample of data by clicking %{
     },
     {
         "adress": "/categories/storage",
-        "datas": {
+        "data": {
           "attributes": {
             "occi.storage.size" : 1000
           },
@@ -36,7 +36,7 @@ You can post a sample of data by clicking %{
     },
     {
       "adress": "/categories/storagelink",
-      "datas": {
+      "data": {
          "kind":"www.schemas.ogf.org/occi/infrastructure#storagelink",
          "attributes": {
            "occi.core.id":"6df690d2-3158-40c4-88fb-d1c41584d6e7",

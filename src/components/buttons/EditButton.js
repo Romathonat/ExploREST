@@ -11,9 +11,9 @@ class EditButton extends React.Component{
 
     //we delete the ok message
     this.props.dispatch(actions.setOkMessage(''));
-    
+
     var relativeUrl = this.props.currentPath;
-    //we make a call in order to get the datas without the html formating
+    //we make a call in order to get the data without the html formating
     callAPI(
       'GET',
       relativeUrl,

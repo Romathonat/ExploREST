@@ -11,7 +11,7 @@ class DelButton extends React.Component{
 
     //we delete the ok message
     this.props.dispatch(actions.setOkMessage(''));
-    
+
     var reactElement = this;
 
     $('.confirmationDelete').modal({
@@ -40,7 +40,7 @@ class DelButton extends React.Component{
 
         <div className="ui basic modal confirmationDelete">
           <div className="description myCentering">
-            <p>You are going to delete datas into the current server, are you sure?</p>
+            <p>You are going to delete data into the current server, are you sure?</p>
           </div>
 
           <div className="actions">

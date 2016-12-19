@@ -45,7 +45,7 @@ class Reading extends React.Component{
     });
   }
 
-  //replace the playgrounLink
+  //replace playgroundLinks
   replaceLinks = () => {
     var reactComponent = this;
     $('.reading a').each(function() {
@@ -64,12 +64,12 @@ class Reading extends React.Component{
     });
   }
 
-  postSample = (datas) => {
-    if(datas instanceof Array){
-      for(var data of datas){
+  postSample = (data) => {
+    if(data instanceof Array){
+      for(var datum of data){
         callAPI(
           'POST',
-          data.adress,
+          datum.adress,
           (data) => {
             this.props.dispatch(actions.setOkMessage('Datas have been posted'));
           },
@@ -77,13 +77,13 @@ class Reading extends React.Component{
             this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
           },
           {'Content-Type': 'application/json'},
-          JSON.stringify(data.datas)
+          JSON.stringify(datum.data)
         );
       }
     }else{
       callAPI(
         'POST',
-        datas.adress,
+        data.adress,
         (data) => {
           this.props.dispatch(actions.setCurrentJson(data));
           this.props.dispatch(actions.setOkMessage('Datas have been posted'));
@@ -92,17 +92,17 @@ class Reading extends React.Component{
           this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
         },
         {'Content-Type': 'application/json'},
-        JSON.stringify(datas.datas)
+        JSON.stringify(data.data)
       );
     }
   }
 
   deleteResources = (datas) => {
-    if(datas instanceof Array){
-      for(var data of datas){
+    if(data instanceof Array){
+      for(var datum of data){
         callAPI(
           'DELETE',
-          data,
+          datum,
           (data) => {
             this.props.dispatch(actions.setOkMessage('Resources have been deleted'));
           },
@@ -114,7 +114,7 @@ class Reading extends React.Component{
     }else{
       callAPI(
         'DELETE',
-        datas,
+        data,
         (data) => {
           this.props.dispatch(actions.setCurrentJson(''));
           this.props.dispatch(actions.setOkMessage('Resource have been deleted'));
@@ -128,6 +128,7 @@ class Reading extends React.Component{
 
   clickLinkSample = (uuid) => {
     this.props.goToTop();
+    
     //we search into the current window.sampleDatas the correct json
     var content = '' ;
     for(var i=0; i<window.sampleDatas.length; i++){
@@ -139,7 +140,6 @@ class Reading extends React.Component{
 
     if(content !== ''){
       var reactElement = this;
-
       //before posting we ask for confirmation
 
       //we give datas to the modal before it shows

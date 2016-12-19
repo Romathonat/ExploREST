@@ -27,7 +27,7 @@ export default class ModalConfirmationPost extends React.Component{
     return(
       <div className="ui basic modal confirmationPost">
         <div className="description myCentering">
-          <p>You are going to create and/or delete datas into the current server, are you sure?</p>
+          <p>You are going to create and/or delete data into the current server, are you sure?</p>
           {postInfos}
           {delInfos}
           <a href="" onClick={(e) => {e.preventDefault(); this.setState({seeDetails: !this.state.seeDetails})}}>
