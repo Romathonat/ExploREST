@@ -7,7 +7,6 @@ There is two main use cases :
 * You can use it as a tool to browse resources of any API you want (using HTTP methods).
 * You can use it as your own documentation tool for your API REST.
 
-
 Features:
 * Cross-resource exploration: when a resource has a link to another resource, you can directly click it to access it.
 * Formatted, highlighted JSON.

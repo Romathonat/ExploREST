@@ -73,7 +73,7 @@ class NavBar extends React.Component{
       </div>;
 
     return (
-      <div className="ui inverted menu navbar centered grid blue">
+      <div className="ui inverted menu navbar centered grid orange">
         <div className="ui container wrapNavbar">
           <a className="brand item largefont">ExploREST</a>
           <div className="ui item right navBarRight">

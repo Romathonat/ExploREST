@@ -3,7 +3,7 @@ import ArrayJSON from './components/reactifyJSON/ArrayJSON.js';
 import ObjectJSON from './components/reactifyJSON/ObjectJSON.js';
 import KeyValueJSON from './components/reactifyJSON/KeyValueJSON.js';
 import ValueJSON from './components/reactifyJSON/ValueJSON.js';
-
+import conf from '../conf.js';
 
 export function callAPI(operation, relativeUrl, currentSuccess, currentError, additionalHeaders, data, asynchronous, timeout){
   var url = window.backendURL+relativeUrl;
@@ -12,6 +12,8 @@ export function callAPI(operation, relativeUrl, currentSuccess, currentError, ad
     'Accept' : 'application/json'
   };
   headers = $.extend(headers, additionalHeaders);
+  headers = $.extend(headers, conf.headers);
+
 
   if(asynchronous === 'undefined' || asynchronous === null){
     var asynchronous = true;
