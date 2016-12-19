@@ -9,8 +9,8 @@ If you look at a classic API documentation, it is often quite complicated. With 
 
 To show you how simple it is, let's use ExploREST to discover a REST API you may not know : [http://reqres.in/api](http://reqres.in/api)  
 
-First select reqres.in/api in the list a the top of the page and click on use.
- 
+First select reqres.in/api in the list a the top of the page and click on use (it will show an error because the root does not return a response : it is the fault of the API, don't worry)
+
 You can get the list of users by clicking [here](/users).  
 
 With reqres, you can create users. Let's say we want to create an user called Linus Torvald : %{

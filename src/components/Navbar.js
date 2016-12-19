@@ -32,12 +32,13 @@ class NavBar extends React.Component{
       navbar.props.dispatch(actions.setErrorMessage('The URL needs to begin with http:// or https://  '));
     }
     else{
-      //we make this request to specify to the server our current targetServer
+      //even if it gives us an error, we change the current backendURL
+      window.backendURL = backendURL;
+
       $.ajax({
         url: backendURL+'/',
         type: 'GET',
         success: function(data){
-              window.backendURL = backendURL;
               navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
               navbar.props.dispatch(actions.setCurrentQueryPath('/'));
               navbar.props.dispatch(actions.setCurrentJson(data));
