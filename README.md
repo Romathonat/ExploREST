@@ -6,7 +6,7 @@ ExploREST is an application that you can use to documentate your REST API, to ma
 or show easily how beautiful your API is.  
 If you look at a classic API documentation, it is often quite complicated. With ExploREST, you take the user by the hand and show him how your application works by simply cliking on links, that will POST, PUT, DELETE or simply GET !
 
-Don't believe me, just [try it](www.explorest.herokuapp.com)
+Don't believe me, just [try it](http://explorest.herokuapp.com)
 
 Features:
 * Cross-resource exploration: when a resource has a link to another resource, you can directly click it to access it.
