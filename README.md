@@ -144,7 +144,7 @@ Go to the conf.js file, and add the headers you want in the headers variable.
 
 ``` bash
 #need to be done once
-heroku git:remote -a herokuRepo
+heroku git:remote -a herokuRepo 
 ```
 ``` bash
 npm run build
