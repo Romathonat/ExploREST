@@ -37,7 +37,6 @@ class NavBar extends React.Component{
 
       navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
       navbar.props.dispatch(actions.setCurrentQueryPath('/'));
-      navbar.props.dispatch(actions.setCurrentJson(data));
     }
   }
 
