@@ -4,7 +4,6 @@ import React from 'react';
 export default class ValueJSON  extends React.Component{
   isNumber = (obj) => { return !isNaN(parseFloat(obj)) }
 
-
   clickLinkPlayground = (event) => {
     event.preventDefault();
     this.props.tools().clickLinkPlayground(event.target.href);
@@ -13,6 +12,7 @@ export default class ValueJSON  extends React.Component{
   render(){
     var value;
     var element = this.props.value;
+    var isStr = false;
 
     if(element === false || element === true){
       value = <span className="boolean">{element.toString()}</span>;
@@ -22,6 +22,7 @@ export default class ValueJSON  extends React.Component{
       value = <span className="number">{element}</span>;
     }
     else{
+      isStr = true;
       var regexRoot = new RegExp(window.backendURL);
 
       //we make the link when finding a link of the playground
@@ -44,12 +45,14 @@ export default class ValueJSON  extends React.Component{
       whiteSpaces += '  ';
     }
 
-
     var optionalComma = this.props.lastElement === true ? '' : ',';
+    var doubleQuote = '"';
 
-    var valueDisplay = boolean ? <div className="inline">{whiteSpaces}{value}{optionalComma+'\n'}</div> :
-      <div className="inline">{whiteSpaces+'"'}{value}{'"'+optionalComma+'\n'}</div>;
-
+    if (isStr) {
+        var valueDisplay = <div className="inline">{whiteSpaces+doubleQuote}{value}{doubleQuote+optionalComma+'\n'}</div>;
+    } else {
+        var valueDisplay = <div className="inline">{whiteSpaces}{value}{optionalComma+'\n'}</div>;
+    }
     return (
       <div className="inline">
         {valueDisplay}

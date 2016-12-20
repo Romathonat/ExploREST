@@ -20,6 +20,7 @@ export default class ModalConfirmationPost extends React.Component{
                       <p><strong>POST:</strong></p>
                       <pre className="segmentpadding datasPost">{toolify(this.state.post)}</pre>
                     </div> : null;
+                    
     var putInfos = typeof this.state.put !== 'undefined' && this.state.seeDetails ? <div className="ui segment segmentDataPost">
                       <p><strong>PUT:</strong></p>
                       <pre className="segmentpadding datasPost">{toolify(this.state.put)}</pre>
@@ -27,7 +28,7 @@ export default class ModalConfirmationPost extends React.Component{
 
     var delInfos = typeof this.state.del !== 'undefined' && this.state.seeDetails ? <div className="ui segment segmentDataPost">
                       <p><strong>DEL:</strong></p>
-                      <pre className="segmentpadding datasDel">{this.state.del.join('\n')}</pre>
+                      <pre className="segmentpadding datasDel">{this.state.del}</pre>
                     </div> : null;
     return(
       <div className="ui basic modal confirmationPost">

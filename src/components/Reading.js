@@ -64,22 +64,14 @@ class Reading extends React.Component{
     });
   }
 
-  postSample = (data) => {
-      var data, putOrPostMethod;
-      if (content.put) {
-        data = content.put;
-        putOrPostMethod = 'PUT'
-      } else {
-        data = content.post;
-        putOrPostMethod = 'POST'
-      }
+  postSample = (data, putOrPostMethod) => {
       if(!(data instanceof Array)){
         data = [ data ];
       }
-      for(var datum of data){
+      for(let datum of data){
         callAPI(
           putOrPostMethod,
-          addressToCategoriesUrl(datum.address),
+          datum.adress,
           (resData) => {
             this.props.dispatch(actions.setOkMessage('Data have been posted'));
             this.props.dispatch(actions.setCurrentJson(data));
@@ -88,7 +80,7 @@ class Reading extends React.Component{
             this.props.setErrorMessage('Unable to access this resource', xhr.status+' '+xhr.responseText);
           },
           {'Content-Type': 'application/json'},
-          JSON.stringify(datum.data || datum.datas)
+          JSON.stringify(datum.data)
         );
     }
   }
@@ -97,10 +89,10 @@ class Reading extends React.Component{
     if(!(data instanceof Array)){
       data = [ data ];
     }
-    for(var datum of data){
+    for(let datum of data){
       callAPI(
         'DELETE',
-        datum, // NB. NOT addressToCategoriesUrl(data) because can't delete a collection !
+        datum,
         (resData) => {
           this.props.dispatch(actions.setOkMessage('Resources have been deleted'));
           this.props.dispatch(actions.setCurrentJson(''));
@@ -129,7 +121,7 @@ class Reading extends React.Component{
       //before posting we ask for confirmation
 
       //we give datas to the modal before it shows
-      this.refs.ModalConfirmationPost.setState({'post': content.post, 'del': content.del});
+      this.refs.ModalConfirmationPost.setState({'post': content.post, 'put': content.put, 'del': content.del});
       var modalConfirmationPost = this.refs.ModalConfirmationPost;
 
       //we show the modal
@@ -137,15 +129,18 @@ class Reading extends React.Component{
           observeChanges: true,
           onApprove: function() {
             //a link can potentially post and del
-            if('post' in content || 'put' in content){
-              reactElement.postSample(content.post);
+            if('post' in content ){
+                reactElement.postSample(content.post, 'POST');
+            }
+            else if('put' in content){
+                reactElement.postSample(content.put, 'PUT');
             }
             if('del' in content){
-              reactElement.deleteResources(content.del);
+                reactElement.deleteResources(content.del);
             }
           },
           onHidden: function(){
-            modalConfirmationPost.setState({seeDetails: false});
+              modalConfirmationPost.setState({seeDetails: false});
           }
       }).modal('show');
     }
