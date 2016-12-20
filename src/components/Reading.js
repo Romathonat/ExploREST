@@ -105,6 +105,7 @@ class Reading extends React.Component{
           datum,
           (data) => {
             this.props.dispatch(actions.setOkMessage('Resources have been deleted'));
+            this.props.dispatch(actions.setCurrentJson(''));
           },
           (xhr) => {
             this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
