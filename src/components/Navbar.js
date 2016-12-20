@@ -35,19 +35,9 @@ class NavBar extends React.Component{
       //even if it gives us an error, we change the current backendURL
       window.backendURL = backendURL;
 
-      $.ajax({
-        url: backendURL+'/',
-        type: 'GET',
-        success: function(data){
-              navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
-              navbar.props.dispatch(actions.setCurrentQueryPath('/'));
-              navbar.props.dispatch(actions.setCurrentJson(data));
-            },
-        error: function(xhr){
-              navbar.props.dispatch(actions.setErrorMessage('Error connecting to '+backendURL));
-            }
-        }
-      );
+      navbar.props.dispatch(actions.setOkMessage('You are now using '+backendURL));
+      navbar.props.dispatch(actions.setCurrentQueryPath('/'));
+      navbar.props.dispatch(actions.setCurrentJson(data));
     }
   }
 
