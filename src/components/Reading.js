@@ -65,63 +65,48 @@ class Reading extends React.Component{
   }
 
   postSample = (data) => {
-    if(data instanceof Array){
+      var data, putOrPostMethod;
+      if (content.put) {
+        data = content.put;
+        putOrPostMethod = 'PUT'
+      } else {
+        data = content.post;
+        putOrPostMethod = 'POST'
+      }
+      if(!(data instanceof Array)){
+        data = [ data ];
+      }
       for(var datum of data){
         callAPI(
-          'POST',
-          datum.adress,
-          (data) => {
-            this.props.dispatch(actions.setOkMessage('Datas have been posted'));
+          putOrPostMethod,
+          addressToCategoriesUrl(datum.address),
+          (resData) => {
+            this.props.dispatch(actions.setOkMessage('Data have been posted'));
+            this.props.dispatch(actions.setCurrentJson(data));
           },
           (xhr) => {
-            this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
+            this.props.setErrorMessage('Unable to access this resource', xhr.status+' '+xhr.responseText);
           },
           {'Content-Type': 'application/json'},
-          JSON.stringify(datum.data)
+          JSON.stringify(datum.data || datum.datas)
         );
-      }
-    }else{
-      callAPI(
-        'POST',
-        data.adress,
-        (data) => {
-          this.props.dispatch(actions.setCurrentJson(data));
-          this.props.dispatch(actions.setOkMessage('Datas have been posted'));
-        },
-        (xhr) => {
-          this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
-        },
-        {'Content-Type': 'application/json'},
-        JSON.stringify(data.data)
-      );
     }
   }
 
   deleteResources = (data) => {
-    if(data instanceof Array){
-      for(var datum of data){
-        callAPI(
-          'DELETE',
-          datum,
-          (data) => {
-            this.props.dispatch(actions.setOkMessage('Resources have been deleted'));
-            this.props.dispatch(actions.setCurrentJson(''));
-          },
-          (xhr) => {
-            this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
-          }
-        );
-      }
-    }else{
+    if(!(data instanceof Array)){
+      data = [ data ];
+    }
+    for(var datum of data){
       callAPI(
         'DELETE',
-        data,
-        (data) => {
+        datum, // NB. NOT addressToCategoriesUrl(data) because can't delete a collection !
+        (resData) => {
+          this.props.dispatch(actions.setOkMessage('Resources have been deleted'));
           this.props.dispatch(actions.setCurrentJson(''));
-          this.props.dispatch(actions.setOkMessage('Resource have been deleted'));
         },
         (xhr) => {
-          this.props.setErrorMessage('Impossible to access this resource', xhr.status+' '+xhr.responseText);
+          this.props.setErrorMessage('Unable to access this resource', xhr.status+' '+xhr.responseText);
         }
       );
     }
@@ -152,7 +137,7 @@ class Reading extends React.Component{
           observeChanges: true,
           onApprove: function() {
             //a link can potentially post and del
-            if('post' in content){
+            if('post' in content || 'put' in content){
               reactElement.postSample(content.post);
             }
             if('del' in content){
