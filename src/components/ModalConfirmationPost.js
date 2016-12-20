@@ -9,6 +9,7 @@ export default class ModalConfirmationPost extends React.Component{
     super(props);
     this.state = {
       post: '',
+      put: '',
       del: '',
       seeDetails: false
     };
@@ -18,6 +19,10 @@ export default class ModalConfirmationPost extends React.Component{
     var postInfos = typeof this.state.post !== 'undefined' && this.state.seeDetails ? <div className="ui segment segmentDataPost">
                       <p><strong>POST:</strong></p>
                       <pre className="segmentpadding datasPost">{toolify(this.state.post)}</pre>
+                    </div> : null;
+    var putInfos = typeof this.state.put !== 'undefined' && this.state.seeDetails ? <div className="ui segment segmentDataPost">
+                      <p><strong>PUT:</strong></p>
+                      <pre className="segmentpadding datasPost">{toolify(this.state.put)}</pre>
                     </div> : null;
 
     var delInfos = typeof this.state.del !== 'undefined' && this.state.seeDetails ? <div className="ui segment segmentDataPost">
@@ -29,6 +34,7 @@ export default class ModalConfirmationPost extends React.Component{
         <div className="description myCentering">
           <p>You are going to create and/or delete data into the current server, are you sure?</p>
           {postInfos}
+          {putInfos}
           {delInfos}
           <a href="" onClick={(e) => {e.preventDefault(); this.setState({seeDetails: !this.state.seeDetails})}}>
             {this.state.seeDetails ? 'Hide': 'See'} details</a>
