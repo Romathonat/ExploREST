@@ -25,6 +25,14 @@ class CodeView extends React.Component{
     this.props.dispatch(actions.setCurrentJson(e.target.value));
   }
 
+  undo = (e) => {
+    this.props.dispatch(actions.undo());
+  }
+
+  redo = (e) => {
+    this.props.dispatch(actions.redo());
+  }
+
   render() {
     if(this.props.codeRights === 'write'){
       var value;
@@ -34,7 +42,6 @@ class CodeView extends React.Component{
       else{
         value = JSON.stringify(this.props.currentJson,null,2);
       }
-
       var view = <textarea className="segmentpadding mydata textareamydata" onChange={this.updateCurrentJson} value={value}></textarea>;
     }
     else{
@@ -47,8 +54,23 @@ class CodeView extends React.Component{
       var view = <pre className="segmentpadding mydata">{json}</pre>;
     }
 
+    let classesLeftArrow = 'large arrow left icon';
+    let classesRightArrow = 'large arrow right icon';
+
+    if(this.props.previousGlobalState.length == 0){
+        classesLeftArrow += ' disabled';
+    }
+    if(this.props.nextGlobalState.length == 0){
+        classesRightArrow += ' disabled';
+    }
+
     return(
       <div className="row ui segment mydatacontainer">
+        <div className="myCentering">
+            <i className={classesLeftArrow} onClick={this.undo}></i>
+            <i className={classesRightArrow} onClick={this.redo}></i>
+        </div>
+
         <div className="ui right floated myExpand" onClick={this.fullscreen}>
           <i className="expand disabled link icon"></i>
         </div>
@@ -68,7 +90,9 @@ class CodeView extends React.Component{
 
 const mapStateToProps = (state) => ({
   currentJson: state.present.currentJson,
-  codeRights: state.present.codeRights
+  codeRights: state.present.codeRights,
+  previousGlobalState: state.past,
+  nextGlobalState: state.future
 })
 
 export default CodeView = connect(mapStateToProps)(CodeView);

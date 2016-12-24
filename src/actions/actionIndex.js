@@ -52,3 +52,15 @@ export function setCurrentSchemes(currentSchemes) {
     currentSchemes: currentSchemes
   }
 }
+
+export function undo() {
+  return {
+    type: 'UNDO'
+  }
+}
+
+export function redo() {
+  return {
+    type: 'REDO'
+  }
+}
