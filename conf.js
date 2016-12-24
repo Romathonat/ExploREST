@@ -1,7 +1,7 @@
 //the list of servers we can access
 const serverPaths = [
   'https://api.github.com',
-  'http://reqres.in/api',
+  'http://jsonplaceholder.typicode.com',
   'http://hipsterjesus.com/api',
   'http://pokeapi.co/api/v2'
 ]

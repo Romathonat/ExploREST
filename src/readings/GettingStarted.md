@@ -7,43 +7,30 @@ If you look at a classic API documentation, it is often quite complicated. With 
 
 ## Try it out
 
-To show you how simple it is, let's use ExploREST to discover a REST API you may not know : [http://reqres.in/api](http://reqres.in/api)  
-First select http://reqres.in/api in the list a the top of the page and click on use.
+To show you how simple it is, let's use ExploREST to discover a REST API you may not know : [http://jsonplaceholder.typicode.com/](http://jsonplaceholder.typicode.com/)  
+First select http://jsonplaceholder.typicode.com/ in the list a the top of the page and click on use.
 
-You can get the list of users by clicking [here](/users).  
+You can get the list of posts by clicking [here](/posts).  
 
-With reqres, you can create users. Let's say we want to create an user called Linus Torvald : %{
+With this API, you can create posts. Let's say we want to create a post : %{
     "text": "try it",
     "post":{
-        "adress": "/users",
-        "data": {
-            "id": 51,
-            "name": "Linux Torvald",
-            "job": "Linux God"
+        "adress": "/posts",
+        "data":{
+            "userId": 25,
+            "id": 26,
+            "title": "My beautiful Post",
+            "body": "Lorem ipsum, consectur etc"
         }
     }
 }%  
 
-Now let's put Richard Stallman, which is friend with the first user of our database : %{
-    "text": "Richard Stallman",
-    "put":{
-        "adress": "/users/52",
-        "data": {
-            "name": "Richard Stallman",
-            "job": "Computer God",
-            "friend": "http://reqres.in/api/users/1"
-        }
-    }
-}%  
-
-You can click on links to navigate betweens resources in the json, clik on the value of the field "friend"
-of Stallman for example.  
-
-Now we are going to delete Linux Torvald
+Now we are going to delete it
 %{
   "text": "by clicking here",
-  "del": "/users/51"
+  "del": "/posts/26"
 }%
+
 
 See ? That was **easy**
 
@@ -54,6 +41,9 @@ Morevover, the use of the three buttons are quite simple :
 * GET: make a GET request with the target URL
 * EDIT: switch the JSON view to editable, then you can make a POST or PUT to edit or create data
 * DEL: make a DELETE request with the target URL
+
+You can also click on links to navigate betweens resources in the json. Try with the Github API (try
+resources that are not protected by authentification)
 
 ### Switching server
 
