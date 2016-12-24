@@ -1,21 +1,25 @@
-# ExploREST
-
+[![Build Status](https://travis-ci.org/Romathonat/ExploREST.svg?branch=master)](https://travis-ci.org/Romathonat/ExploREST.svg?branch=master)
+=========
+ExploREST
+=========
 An app to browse, documentate, discover REST APIs
 
 ExploREST is an application that you can use to documentate your REST API, to make presentations
 or show easily how beautiful your API is.  
 If you look at a classic API documentation, it is often quite complicated. With ExploREST, you take the user by the hand and show him how your application works by simply cliking on links, that will POST, PUT, DELETE or simply GET !
 
-Don't believe me, just [try it](http://explorest.herokuapp.com)
+Don't believe me, go try it: [http://explorest.herokuapp.com](http://explorest.herokuapp.com)
+
+![app screenshot](https://github.com/Romathonat/ExploREST/blob/master/assets/rsz_explorest.png)
 
 Features:
 * Cross-resource exploration: when a resource has a link to another resource, you can directly click it to access it.
 * Formatted, highlighted JSON.
 * Markdown to documentate your API
 * Playground links: insert them in you Markdown. When you click on them, if makes a get request and diplays the result !
-* Sample links: idem. When you click on them, it makes the POST or DELETE requests you specified in the Markdown. It is very practical for demonstrations, or to communicate with someone else: instead of making a curl (more efforts needed), put a sample link into the markdown for once. Now other people just have to click it !
+* Sample links: idem. When you click on them, it makes the POST, PUT or DELETE requests you specified in the Markdown. It is very practical for demonstrations, or to communicate with someone else: instead of making a curl (more efforts needed), put a sample link into the markdown for once. Now other people just have to click it !
 
-Note that I did this project on my own, so it is not fully tested and documented yet. But there is a good base.
+Note that I did this project on my own, so it is not fully tested and documented yet. But there is a good base (I hope)
 
 Requirement :
 (some versions bellow should work too but have not been tested)
@@ -65,14 +69,10 @@ A sample link is a link that post datas onto the current server when clicking on
 text before %{
   "text": "sampleLink",
   "post": {
-    "address": "/compute",
-    "datas": {
-      "kind":"http://schemas.ogf.org/occi/infrastructure#compute",
-      "attributes": {
-        "occi.compute.hostname" : "test",
-        "occi.compute.state" : "inactive"
-      },
-      "id": "6df690d2-3158-40c4-88fb-d1c41584d6e5"
+    "address": "/character",
+    "data": {
+      "name":"Dark Vador",
+      "type": "sith"
     }
   }
 }% text after
@@ -94,32 +94,22 @@ If you want your sample link to post to different locations, just put an array i
   "text": "sampleLink",
   "post": [
     {
-        "address": "/compute",
-        "kind":"http://schemas.ogf.org/occi/infrastructure#compute",
-        "datas": {
-          "attributes": {
-            "occi.compute.hostname" : "test",
-            "occi.compute.state" : "inactive"
-          },
-          "id": "6df690d2-3158-40c4-88fb-d1c41584d6e5"
-        }
+      "adress": "/character",
+      "datas": {
+         "name": "Leia",
+         "type": "princess"
+       }
     },
     {
-        "address": "/storage",
+        "address": "/soldier",
         "datas": [
             {
-              "kind":"http://schemas.ogf.org/occi/infrastructure#storage",
-              "attributes": {
-                "occi.storage.size" : 1000
-              },
-              "id": "6df690d2-3158-40c4-88fb-d1c41584d6e6"
+              "name": "Francis",
+              "type": "stormtrooper"
             },
             {
-              "kind":"http://schemas.ogf.org/occi/infrastructure#storage",
-              "attributes": {
-                "occi.storage.size" : 500
-              },
-              "id": "6df690d2-3158-40c4-88fb-d1c41584d689"
+              "name": "Michel",
+              "type": "stormtrooper"
             }
         ]
     }
