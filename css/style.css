@@ -107,7 +107,6 @@ blockquote {
 }
 
 /*Color for highlighting JSON code */
-
 .string { color: #A37C05 ; }
 .number { color: darkorange; }
 .boolean { color: blue; }
@@ -199,4 +198,8 @@ blockquote {
 .segmentDataPost{
   text-align: left;
   color: black;
+}
+
+.displayHand{
+    cursor: pointer;
 }

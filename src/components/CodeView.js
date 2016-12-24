@@ -54,8 +54,8 @@ class CodeView extends React.Component{
       var view = <pre className="segmentpadding mydata">{json}</pre>;
     }
 
-    let classesLeftArrow = 'large arrow left icon';
-    let classesRightArrow = 'large arrow right icon';
+    let classesLeftArrow = 'large arrow left icon displayHand';
+    let classesRightArrow = 'large arrow right icon displayHand';
 
     if(this.props.previousGlobalState.length == 0){
         classesLeftArrow += ' disabled';
