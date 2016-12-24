@@ -1,12 +1,16 @@
-# ExploREST
-
+[![Build Status](https://travis-ci.org/Romathonat/ExploREST.svg?branch=master)](https://travis-ci.org/Romathonat/ExploREST.svg?branch=master)
+=========
+ExploREST
+=========
 An app to browse, documentate, discover REST APIs
 
 ExploREST is an application that you can use to documentate your REST API, to make presentations
 or show easily how beautiful your API is.  
 If you look at a classic API documentation, it is often quite complicated. With ExploREST, you take the user by the hand and show him how your application works by simply cliking on links, that will POST, PUT, DELETE or simply GET !
 
-Don't believe me, just [try it](http://explorest.herokuapp.com)
+Don't believe me, go try it: [http://explorest.herokuapp.com](http://explorest.herokuapp.com)
+
+![app screenshot](https://github.com/Romathonat/ExploREST/blob/master/assets/rsz_explorest.png)
 
 Features:
 * Cross-resource exploration: when a resource has a link to another resource, you can directly click it to access it.
