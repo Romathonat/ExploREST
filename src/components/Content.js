@@ -123,8 +123,8 @@ class Content extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.errorMessage,
-  okMessage: state.okMessage
+  errorMessage: state.present.errorMessage,
+  okMessage: state.present.okMessage
 })
 
 export default Content = connect(mapStateToProps)(Content);

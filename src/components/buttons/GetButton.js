@@ -10,7 +10,7 @@ class GetButton extends React.Component{
     this.props.setErrorMessage('', '');
     //we delete the ok message
     this.props.dispatch(actions.setOkMessage(''));
-    
+
     this.props.dispatch(actions.setReadableCode());
 
     callAPI(
@@ -33,6 +33,6 @@ class GetButton extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  currentPath: state.currentPath
+  currentPath: state.present.currentPath
 })
 export default GetButton = connect(mapStateToProps)(GetButton);

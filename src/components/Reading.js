@@ -165,7 +165,7 @@ class Reading extends React.Component{
     return (
       <div>
         <div className="reading segmentpadding" dangerouslySetInnerHTML={this.createMarkup()}></div>
-
+        
         <ModalConfirmationPost ref="ModalConfirmationPost" />
       </div>
     );

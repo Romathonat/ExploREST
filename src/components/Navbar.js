@@ -73,8 +73,8 @@ class NavBar extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  currentURLServer: state.currentURLServer,
-  schemes: state.currentSchemes
+  currentURLServer: state.present.currentURLServer,
+  schemes: state.present.currentSchemes
 })
 
 export default NavBar = connect(mapStateToProps)(NavBar);

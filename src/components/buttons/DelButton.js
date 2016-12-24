@@ -61,7 +61,7 @@ class DelButton extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  currentPath: state.currentPath
+  currentPath: state.present.currentPath
 })
 
 export default DelButton = connect(mapStateToProps)(DelButton);

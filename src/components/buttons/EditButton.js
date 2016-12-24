@@ -78,8 +78,8 @@ class EditButton extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  currentJson: state.currentJson,
-  currentPath: state.currentPath,
-  codeRights: state.codeRights
+  currentJson: state.present.currentJson,
+  currentPath: state.present.currentPath,
+  codeRights: state.present.codeRights
 })
 export default EditButton = connect(mapStateToProps)(EditButton);

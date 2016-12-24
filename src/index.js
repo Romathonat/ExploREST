@@ -12,8 +12,8 @@ import OtherInfos from 'raw!./readings/OtherInfos.md';
 
 import conf from '../conf.js';
 
-let store = createStore(reducer, conf.initialState);
-// let store = createStore(reducer, initialState, window.devToolsExtension && window.devToolsExtension());
+//let store = createStore(reducer, conf.initialState);
+let store = createStore(reducer, window.devToolsExtension && window.devToolsExtension());
 
 //the first reading is the default
 const readings = [

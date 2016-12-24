@@ -67,8 +67,8 @@ class CodeView extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  currentJson: state.currentJson,
-  codeRights: state.codeRights
+  currentJson: state.present.currentJson,
+  codeRights: state.present.codeRights
 })
 
 export default CodeView = connect(mapStateToProps)(CodeView);
